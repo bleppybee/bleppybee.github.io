@@ -3,9 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐝</title>
+    <title>by bee</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Comic Sans MS", "Comic Sans", cursive;
+      background: #ffffff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #ffb800;
+      text-shadow: 1px 1px 0 #33300022;
+    }
+
+    .hex-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .hex {
+      position: relative;
+      width: 220px;
+      height: 200px;
+      background: #fff7cc;
+      margin: auto;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hex:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .hex img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hex .banner {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 184, 0, 0.9);
+      color: #fff;
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .hex:hover .banner {
+      transform: translateY(0);
+    }
+
+    .hex span {
+      display: block;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #444;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    body.night {
+      background: #39363d;
+      color: #eee;
+    }
+    body.night .hex {
+      background: #333;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    body.night .hex .banner {
+      background: rgba(80, 80, 80, 0.9);
+      color: #ffb800;
+    }
+    body.night footer {
+      color: #aaa;
+    }
+
+    #night-toggle {
+      position: fixed;
+      top: 5px;
+      right: 18px;
+      background: #ffb70000;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 100;
+      color: #000000;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      box-shadow: 0 2px 8px rgba(162, 2, 255, 0.048);
+      opacity: 1; /* Make it visible */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    #night-toggle:hover {
+      background: #ffd96600;
+      color: #ffdc14;
+    }
+  </style>
 </head>
 <body>
-    tba
+  <header>
+    <h1>🐝</h1>
+    <p>bee</p>
+    <button id="night-toggle">⏾⋆.˚</button>
+  </header>
+
+  <main class="hex-grid">
+    <a href="https://bleppybee.github.io/translations" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="hex" id="hex-1">
+        <img src="images/YuutaIcon1.png" alt="Story 1" id="hex-1-img" style="transition: opacity 0.5s;">
+        <div class="banner">translations</div>
+      </div>
+    </a>
+    <a href="https://bleppybee.tumblr.com/custom" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="hex" id="hex-2">
+        <img src="images/hinaicon1.png" alt="Story 2" id="hex-2-img" style="transition: opacity 0.5s;">
+        <div class="banner">fan stories</div>
+      </div>
+    </a>
+  </main>
+
+  <footer>
+<!-- this is where a footer can go-->
+  </footer>
+  <script>
+    document.getElementById('night-toggle').onclick = function() {
+      document.body.classList.toggle('night');
+    };
+
+    // Hex 1 slideshow
+    const images1 = [
+      "images/YuutaIcon1.png"
+      // Add more images here if needed
+    ];
+    let hex1Img = document.getElementById('hex-1-img');
+    let hex1 = document.getElementById('hex-1');
+    let idx1 = 0;
+    let interval1 = null;
+
+    hex1.addEventListener('mouseenter', function() {
+      interval1 = setInterval(() => {
+        hex1Img.style.opacity = 0;
+        setTimeout(() => {
+          idx1 = (idx1 + 1) % images1.length;
+          hex1Img.src = images1[idx1];
+          hex1Img.style.opacity = 1;
+        }, 250);
+      }, 1200);
+    });
+
+    hex1.addEventListener('mouseleave', function() {
+      clearInterval(interval1);
+      idx1 = 0;
+      hex1Img.style.opacity = 0;
+      setTimeout(() => {
+        hex1Img.src = images1[0];
+        hex1Img.style.opacity = 1;
+      }, 250);
+    });
+
+    // Hex 2 slideshow
+    const images2 = [
+      "images/hinaicon1.png"
+      // Add more images here if needed
+    ];
+    let hex2Img = document.getElementById('hex-2-img');
+    let hex2 = document.getElementById('hex-2');
+    let idx2 = 0;
+    let interval2 = null;
+
+    hex2.addEventListener('mouseenter', function() {
+      interval2 = setInterval(() => {
+        hex2Img.style.opacity = 0;
+        setTimeout(() => {
+          idx2 = (idx2 + 1) % images2.length;
+          hex2Img.src = images2[idx2];
+          hex2Img.style.opacity = 1;
+        }, 250);
+      }, 1200);
+    });
+
+    hex2.addEventListener('mouseleave', function() {
+      clearInterval(interval2);
+      idx2 = 0;
+      hex2Img.style.opacity = 0;
+      setTimeout(() => {
+        hex2Img.src = images2[0];
+        hex2Img.style.opacity = 1;
+      }, 250);
+    });
+  </script>
 </body>
 </html>

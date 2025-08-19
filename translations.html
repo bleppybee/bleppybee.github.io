@@ -7,7 +7,7 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: "Comic Sans MS", "Comic Sans", cursive;
       background: #ffffff;
       color: #333;
       display: flex;
@@ -111,22 +111,27 @@
 
     #night-toggle {
       position: fixed;
-      top: 18px;
+      top: 5px;
       right: 18px;
-      opacity: 0;
-      background: none;
+      background: #ffb70000;
       border: none;
       font-size: 2rem;
       cursor: pointer;
       z-index: 100;
+      color: #000000;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      box-shadow: 0 2px 8px rgba(162, 2, 255, 0.048);
+      opacity: 1; /* Make it visible */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
     }
-    #night-toggle::after {
-      content: "🌙";
-      opacity: 1;
-      position: absolute;
-      left: 0;
-      top: 0;
-      pointer-events: none;
+    #night-toggle:hover {
+      background: #ffd96600;
+      color: #ffdc14;
     }
   </style>
 </head>
@@ -134,32 +139,22 @@
   <header>
     <h1>🐝</h1>
     <p>coming soon</p>
-    <button id="night-toggle">🌙</button>
+    <button id="night-toggle">⋆.˚⏾</button>
   </header>
 
   <main class="hex-grid">
-    <a href="https://bleppybee.tumblr.com/TL/unsafe" target="_blank" style="text-decoration:none; color:inherit;">
+    <a href="https://bleppybee.tumblr.com/TL/unsafe/" target="_blank" style="text-decoration:none; color:inherit;">
       <div class="hex" id="hex-1">
-        <img src="https://static.wikia.nocookie.net/ensemble-stars/images/c/c1/(Unsafe_Experiment)_Niki_Shiina_CG2.png?text=1" alt="Story 1" id="hex-1-img" style="transition: opacity 0.5s;">
+        <img src="images/unsafeniki1.png" alt="Story 1" id="hex-1-img" style="transition: opacity 0.5s;">
         <div class="banner">unsafe</div>
       </div>
     </a>
-    <div class="hex">
-      <img src="https://via.placeholder.com/220x200" alt="Story 2">
-      <div class="banner">2</div>
-    </div>
-    <div class="hex">
-      <img src="https://via.placeholder.com/220x200" alt="Story 3">
-      <div class="banner">3</div>
-    </div>
-    <div class="hex">
-      <img src="https://via.placeholder.com/220x200" alt="Story 4">
-      <div class="banner">4</div>
-    </div>
-    <div class="hex">
-      <img src="https://via.placeholder.com/220x200" alt="Story 5">
-      <div class="banner">5</div>
-    </div>
+    <a href="https://bleppybee.tumblr.com/TL/Godspeed/" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="hex" id="hex-2">
+        <img src="images/godspeedtats1.png" alt="Story 2" id="hex-2-img" style="transition: opacity 0.5s;">
+        <div class="banner">godspeed</div>
+      </div>
+    </a>
   </main>
 
   <footer>
@@ -172,14 +167,14 @@
 
   // Hex 1 slideshow (already present)
   const images = [
-    "https://static.wikia.nocookie.net/ensemble-stars/images/8/80/(Unsafe_Experiment)_Niki_Shiina_CG.png",
-    "https://static.wikia.nocookie.net/ensemble-stars/images/9/9d/(Unsafe_Strategy)_Ritsu_Sakuma_CG.png",
-    "https://static.wikia.nocookie.net/ensemble-stars/images/f/f3/(Unsafe_Assistance)_Kanata_Shinkai_CG.png",
-    "https://static.wikia.nocookie.net/ensemble-stars/images/b/b4/(Unsafe_Preparation)_Tsumugi_Aoba_CG.png",
-    "https://static.wikia.nocookie.net/ensemble-stars/images/c/c1/(Unsafe_Experiment)_Niki_Shiina_CG2.png",
-    "https://static.wikia.nocookie.net/ensemble-stars/images/a/af/(Unsafe_Strategy)_Ritsu_Sakuma_CG2.png",
-    "https://static.wikia.nocookie.net/ensemble-stars/images/c/c3/(Unsafe_Assistance)_Kanata_Shinkai_CG2.png",
-    "https://static.wikia.nocookie.net/ensemble-stars/images/0/06/(Unsafe_Preparation)_Tsumugi_Aoba_CG2.png"
+    "images/unsafeniki1.png",
+    "images/unsaferitsu1.png",
+    "images/unsafekana1.png",
+    "images/unsafemugi1.png",
+    "images/unsafeniki2.png",
+    "images/unsaferitsu2.png",
+    "images/unsafekana2.png",
+    "images/unsafemugi2.png"
   ];
   let hex1Img = document.getElementById('hex-1-img');
   let hex1 = document.getElementById('hex-1');
@@ -214,6 +209,38 @@
       setTimeout(() => {
         hex1Img.src = images[0];
         hex1Img.style.opacity = 1;
+      }, 250);
+    });
+
+    // Hex 2 slideshow
+    const images2 = [
+      "images/godspeedtats1.png",
+      "images/godspeedtats2.png"
+      // Add more images here if needed
+    ];
+    let hex2Img = document.getElementById('hex-2-img');
+    let hex2 = document.getElementById('hex-2');
+    let idx2 = 0;
+    let interval2 = null;
+
+    hex2.addEventListener('mouseenter', function() {
+      interval2 = setInterval(() => {
+        hex2Img.style.opacity = 0;
+        setTimeout(() => {
+          idx2 = (idx2 + 1) % images2.length;
+          hex2Img.src = images2[idx2];
+          hex2Img.style.opacity = 1;
+        }, 250);
+      }, 1200);
+    });
+
+    hex2.addEventListener('mouseleave', function() {
+      clearInterval(interval2);
+      idx2 = 0;
+      hex2Img.style.opacity = 0;
+      setTimeout(() => {
+        hex2Img.src = images2[0];
+        hex2Img.style.opacity = 1;
       }, 250);
     });
   </script>
