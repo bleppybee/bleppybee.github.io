@@ -118,8 +118,8 @@
   </header>
 
   <main class="hex-grid">
-    <div class="hex">
-      <img src="https://via.placeholder.com/220x200" alt="Story 1">
+    <div class="hex" id="hex-1">
+      <img src="https://via.placeholder.com/220x200?text=1" alt="Story 1" id="hex-1-img" style="transition: opacity 0.5s;">
       <div class="banner">1</div>
     </div>
     <div class="hex">
@@ -147,6 +147,39 @@
     document.getElementById('night-toggle').onclick = function() {
       document.body.classList.toggle('night');
     };
+
+    // Slideshow images
+    const images = [
+      "https://static.wikia.nocookie.net/ensemble-stars/images/e/eb/(Unsafe_Experiment)_Niki_Shiina_Full_Render.png?text=1",
+      "https://static.wikia.nocookie.net/ensemble-stars/images/5/54/(Unsafe_Strategy)_Ritsu_Sakuma_Full_Render_Bloomed.png?text=2",
+      "https://static.wikia.nocookie.net/ensemble-stars/images/6/6a/(Unsafe_Experiment)_Niki_Shiina_Full_Render_Bloomed.png?text=3",
+      "https://static.wikia.nocookie.net/ensemble-stars/images/c/c2/(Unsafe_Strategy)_Ritsu_Sakuma_Full_Render.png?text=4"
+    ];
+    let hex1Img = document.getElementById('hex-1-img');
+    let hex1 = document.getElementById('hex-1');
+    let idx = 0;
+    let interval = null;
+
+    hex1.addEventListener('mouseenter', function() {
+      interval = setInterval(() => {
+        hex1Img.style.opacity = 0;
+        setTimeout(() => {
+          idx = (idx + 1) % images.length;
+          hex1Img.src = images[idx];
+          hex1Img.style.opacity = 1;
+        }, 250);
+      }, 1200);
+    });
+
+    hex1.addEventListener('mouseleave', function() {
+      clearInterval(interval);
+      idx = 0;
+      hex1Img.style.opacity = 0;
+      setTimeout(() => {
+        hex1Img.src = images[0];
+        hex1Img.style.opacity = 1;
+      }, 250);
+    });
   </script>
 </body>
 </html>
