@@ -108,25 +108,13 @@
     body.night footer {
       color: #aaa;
     }
-    #hex-1-img {
-      transition: 
-        opacity 0.5s,
-        transform 0.8s cubic-bezier(.77,0,.175,1),
-        left 0.5s;
-      transform: scale(1.12) translate(0, 0);
-      position: relative;
-      left: 0;
-    }
-    #hex-1.hex-hover #hex-1-img {
-      transform: scale(1.18) translate(-10px, -10px);
-    }
   </style>
 </head>
 <body>
   <header>
     <h1>🐝</h1>
     <p>coming soon</p>
-    <button id="night-toggle">🌙 Night Mode</button>
+    <button id="night-toggle">🌙</button>
   </header>
 
   <main class="hex-grid">
@@ -177,39 +165,35 @@
   let interval = null;
 
   hex1.addEventListener('mouseenter', function() {
-    hex1.classList.add('hex-hover');
     interval = setInterval(() => {
-      // Swish out to the right
-      hex1Img.style.left = '220px';
       hex1Img.style.opacity = 0;
       setTimeout(() => {
         idx = (idx + 1) % images.length;
         hex1Img.src = images[idx];
-        hex1Img.style.left = '-220px'; // Start new image from left
         hex1Img.style.opacity = 1;
-        setTimeout(() => {
-          hex1Img.style.left = '0'; // Slide to center
-        }, 50);
-      }, 400);
-    }, 1400);
+      }, 250);
+    }, 1200);
   });
 
   hex1.addEventListener('mouseleave', function() {
-    hex1.classList.remove('hex-hover');
     clearInterval(interval);
     idx = 0;
-    // Swish out to the right
-    hex1Img.style.left = '220px';
     hex1Img.style.opacity = 0;
     setTimeout(() => {
       hex1Img.src = images[0];
-      hex1Img.style.left = '-220px';
       hex1Img.style.opacity = 1;
-      setTimeout(() => {
-        hex1Img.style.left = '0';
-      }, 50);
-    }, 400);
+    }, 250);
   });
+
+    hex1.addEventListener('mouseleave', function() {
+      clearInterval(interval);
+      idx = 0;
+      hex1Img.style.opacity = 0;
+      setTimeout(() => {
+        hex1Img.src = images[0];
+        hex1Img.style.opacity = 1;
+      }, 250);
+    });
   </script>
 </body>
 </html>
