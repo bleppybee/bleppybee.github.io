@@ -108,20 +108,42 @@
     body.night footer {
       color: #aaa;
     }
+
+    #night-toggle {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      opacity: 0;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 100;
+    }
+    #night-toggle::after {
+      content: "🌙";
+      opacity: 1;
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>🐝</h1>
     <p>coming soon</p>
-    <button id="night-toggle">🌙</button>
+    <button id="night-toggle"></button>
   </header>
 
   <main class="hex-grid">
-    <div class="hex" id="hex-1">
-      <img src="https://static.wikia.nocookie.net/ensemble-stars/images/c/c1/(Unsafe_Experiment)_Niki_Shiina_CG2.png?text=1" alt="Story 1" id="hex-1-img" style="transition: opacity 0.5s;">
-      <div class="banner">unsafe</div>
-    </div>
+    <a href="https://bleppybee.tumblr.com/TL/unsafe" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="hex" id="hex-1">
+        <img src="https://static.wikia.nocookie.net/ensemble-stars/images/c/c1/(Unsafe_Experiment)_Niki_Shiina_CG2.png?text=1" alt="Story 1" id="hex-1-img" style="transition: opacity 0.5s;">
+        <div class="banner">unsafe</div>
+      </div>
+    </a>
     <div class="hex">
       <img src="https://via.placeholder.com/220x200" alt="Story 2">
       <div class="banner">2</div>
