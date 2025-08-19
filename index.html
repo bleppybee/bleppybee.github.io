@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>by bee</title>
   <style>
     body {
@@ -93,12 +92,29 @@
       font-size: 0.9rem;
       color: #777;
     }
+
+    body.night {
+      background: #39363d;
+      color: #eee;
+    }
+    body.night .hex {
+      background: #333;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    body.night .hex .banner {
+      background: rgba(80, 80, 80, 0.9);
+      color: #ffb800;
+    }
+    body.night footer {
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>🐝</h1>
     <p>text soon</p>
+    <button id="night-toggle">🌙 Night Mode</button>
   </header>
 
   <main class="hex-grid">
@@ -127,5 +143,10 @@
   <footer>
 <!-- this is where a footer can go-->
   </footer>
+  <script>
+    document.getElementById('night-toggle').onclick = function() {
+      document.body.classList.toggle('night');
+    };
+  </script>
 </body>
 </html>
