@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>by bee</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #ffb800;
+      text-shadow: 1px 1px 0 #33300022;
+    }
+
+    .hex-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .hex {
+      position: relative;
+      width: 220px;
+      height: 200px;
+      background: #fff7cc;
+      margin: auto;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hex:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .hex img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hex .banner {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 184, 0, 0.9);
+      color: #fff;
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .hex:hover .banner {
+      transform: translateY(0);
+    }
+
+    .hex span {
+      display: block;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #444;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    body.night {
+      background: #39363d;
+      color: #eee;
+    }
+    body.night .hex {
+      background: #333;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    body.night .hex .banner {
+      background: rgba(80, 80, 80, 0.9);
+      color: #ffb800;
+    }
+    body.night footer {
+      color: #aaa;
+    }
+
+    #night-toggle {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      opacity: 0;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 100;
+    }
+    #night-toggle::after {
+      content: "🌙";
+      opacity: 1;
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🐝</h1>
+    <p>coming soon</p>
+    <button id="night-toggle">🌙</button>
+  </header>
+
+  <main class="hex-grid">
+    <a href="https://bleppybee.tumblr.com/TL/unsafe" target="_blank" style="text-decoration:none; color:inherit;">
+      <div class="hex" id="hex-1">
+        <img src="https://static.wikia.nocookie.net/ensemble-stars/images/c/c1/(Unsafe_Experiment)_Niki_Shiina_CG2.png?text=1" alt="Story 1" id="hex-1-img" style="transition: opacity 0.5s;">
+        <div class="banner">unsafe</div>
+      </div>
+    </a>
+    <div class="hex">
+      <img src="https://via.placeholder.com/220x200" alt="Story 2">
+      <div class="banner">2</div>
+    </div>
+    <div class="hex">
+      <img src="https://via.placeholder.com/220x200" alt="Story 3">
+      <div class="banner">3</div>
+    </div>
+    <div class="hex">
+      <img src="https://via.placeholder.com/220x200" alt="Story 4">
+      <div class="banner">4</div>
+    </div>
+    <div class="hex">
+      <img src="https://via.placeholder.com/220x200" alt="Story 5">
+      <div class="banner">5</div>
+    </div>
+  </main>
+
+  <footer>
+<!-- this is where a footer can go-->
+  </footer>
+  <script>
+    document.getElementById('night-toggle').onclick = function() {
+      document.body.classList.toggle('night');
+    };
+
+  // Hex 1 slideshow (already present)
+  const images = [
+    "https://static.wikia.nocookie.net/ensemble-stars/images/8/80/(Unsafe_Experiment)_Niki_Shiina_CG.png",
+    "https://static.wikia.nocookie.net/ensemble-stars/images/9/9d/(Unsafe_Strategy)_Ritsu_Sakuma_CG.png",
+    "https://static.wikia.nocookie.net/ensemble-stars/images/f/f3/(Unsafe_Assistance)_Kanata_Shinkai_CG.png",
+    "https://static.wikia.nocookie.net/ensemble-stars/images/b/b4/(Unsafe_Preparation)_Tsumugi_Aoba_CG.png",
+    "https://static.wikia.nocookie.net/ensemble-stars/images/c/c1/(Unsafe_Experiment)_Niki_Shiina_CG2.png",
+    "https://static.wikia.nocookie.net/ensemble-stars/images/a/af/(Unsafe_Strategy)_Ritsu_Sakuma_CG2.png",
+    "https://static.wikia.nocookie.net/ensemble-stars/images/c/c3/(Unsafe_Assistance)_Kanata_Shinkai_CG2.png",
+    "https://static.wikia.nocookie.net/ensemble-stars/images/0/06/(Unsafe_Preparation)_Tsumugi_Aoba_CG2.png"
+  ];
+  let hex1Img = document.getElementById('hex-1-img');
+  let hex1 = document.getElementById('hex-1');
+  let idx = 0;
+  let interval = null;
+
+  hex1.addEventListener('mouseenter', function() {
+    interval = setInterval(() => {
+      hex1Img.style.opacity = 0;
+      setTimeout(() => {
+        idx = (idx + 1) % images.length;
+        hex1Img.src = images[idx];
+        hex1Img.style.opacity = 1;
+      }, 250);
+    }, 1200);
+  });
+
+  hex1.addEventListener('mouseleave', function() {
+    clearInterval(interval);
+    idx = 0;
+    hex1Img.style.opacity = 0;
+    setTimeout(() => {
+      hex1Img.src = images[0];
+      hex1Img.style.opacity = 1;
+    }, 250);
+  });
+
+    hex1.addEventListener('mouseleave', function() {
+      clearInterval(interval);
+      idx = 0;
+      hex1Img.style.opacity = 0;
+      setTimeout(() => {
+        hex1Img.src = images[0];
+        hex1Img.style.opacity = 1;
+      }, 250);
+    });
+  </script>
+</body>
+</html>
