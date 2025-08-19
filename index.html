@@ -108,6 +108,18 @@
     body.night footer {
       color: #aaa;
     }
+    #hex-1-img {
+      transition: 
+        opacity 0.5s,
+        transform 0.8s cubic-bezier(.77,0,.175,1),
+        left 0.5s;
+      transform: scale(1.12) translate(0, 0);
+      position: relative;
+      left: 0;
+    }
+    #hex-1.hex-hover #hex-1-img {
+      transform: scale(1.18) translate(-10px, -10px);
+    }
   </style>
 </head>
 <body>
@@ -119,7 +131,7 @@
 
   <main class="hex-grid">
     <div class="hex" id="hex-1">
-      <img src="https://static.wikia.nocookie.net/ensemble-stars/images/c/c1/(Unsafe_Experiment)_Niki_Shiina_CG2.png?text=1" alt="Story 1" id="hex-1-img" style="transition: opacity 0.5s, transform 0.5s;">
+      <img src="https://static.wikia.nocookie.net/ensemble-stars/images/c/c1/(Unsafe_Experiment)_Niki_Shiina_CG2.png?text=1" alt="Story 1" id="hex-1-img" style="transition: opacity 0.5s;">
       <div class="banner">unsafe</div>
     </div>
     <div class="hex">
@@ -165,42 +177,39 @@
   let interval = null;
 
   hex1.addEventListener('mouseenter', function() {
+    hex1.classList.add('hex-hover');
     interval = setInterval(() => {
-// Pan right
-      hex1Img.style.transform = "translateX(20px) scale(1.05)";
+      // Swish out to the right
+      hex1Img.style.left = '220px';
+      hex1Img.style.opacity = 0;
       setTimeout(() => {
-        // Fade out after pan
-        hex1Img.style.opacity = 0;
+        idx = (idx + 1) % images.length;
+        hex1Img.src = images[idx];
+        hex1Img.style.left = '-220px'; // Start new image from left
+        hex1Img.style.opacity = 1;
         setTimeout(() => {
-          // Reset pan, switch image, fade in
-          idx1 = (idx1 + 1) % images1.length;
-          hex1Img.src = images1[idx1];
-          hex1Img.style.transform = "translateX(0) scale(1)";
-          hex1Img.style.opacity = 1;
-        }, 250);
-      }, 250);
-    }, 1200);
+          hex1Img.style.left = '0'; // Slide to center
+        }, 50);
+      }, 400);
+    }, 1400);
   });
 
   hex1.addEventListener('mouseleave', function() {
+    hex1.classList.remove('hex-hover');
     clearInterval(interval);
     idx = 0;
+    // Swish out to the right
+    hex1Img.style.left = '220px';
     hex1Img.style.opacity = 0;
     setTimeout(() => {
       hex1Img.src = images[0];
+      hex1Img.style.left = '-220px';
       hex1Img.style.opacity = 1;
-    }, 250);
-  });
-
-    hex1.addEventListener('mouseleave', function() {
-      clearInterval(interval);
-      idx = 0;
-      hex1Img.style.opacity = 0;
       setTimeout(() => {
-        hex1Img.src = images[0];
-        hex1Img.style.opacity = 1;
-      }, 250);
-    });
+        hex1Img.style.left = '0';
+      }, 50);
+    }, 400);
+  });
   </script>
 </body>
 </html>
