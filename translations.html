@@ -326,14 +326,20 @@
     }, 500);
   });
 
-function typewriterEffect(element, text, speed = 110) { // slower speed
+let typewriterTimeout = null;
+
+function typewriterEffect(element, text, speed = 110) {
+  if (typewriterTimeout) {
+    clearTimeout(typewriterTimeout);
+    typewriterTimeout = null;
+  }
   element.textContent = "";
   let i = 0;
   function type() {
     if (i < text.length) {
       element.textContent += text.charAt(i);
       i++;
-      setTimeout(type, speed);
+      typewriterTimeout = setTimeout(type, speed);
     }
   }
   type();
@@ -352,6 +358,10 @@ hex1.addEventListener('mouseenter', function() {
   typewriterEffect(hex1Banner, hex1Text);
 });
 hex1.addEventListener('mouseleave', function() {
+  if (typewriterTimeout) {
+    clearTimeout(typewriterTimeout);
+    typewriterTimeout = null;
+  }
   hex1Banner.textContent = hex1Banner.dataset.original;
 });
 
@@ -359,6 +369,10 @@ hex2.addEventListener('mouseenter', function() {
   typewriterEffect(hex2Banner, hex2Text);
 });
 hex2.addEventListener('mouseleave', function() {
+  if (typewriterTimeout) {
+    clearTimeout(typewriterTimeout);
+    typewriterTimeout = null;
+  }
   hex2Banner.textContent = hex2Banner.dataset.original;
 });
   </script>
