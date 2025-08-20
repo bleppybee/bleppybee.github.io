@@ -337,10 +337,12 @@
 
     $('.nav-prev').addEventListener('click', ()=>{ goTo(currentSceneIndex()-1); });
     $('.nav-next').addEventListener('click', ()=>{ goTo(currentSceneIndex()+1); });
-    $('.nav-page').addEventListener('click', ()=>{ alert('Navigation page placeholder'); });
-    $('#btnPrev').addEventListener('click', ()=>{ goTo(currentSceneIndex()-1); });
-    $('#btnNext').addEventListener('click', ()=>{ goTo(currentSceneIndex()+1); });
-    $('#btnPage').addEventListener('click', ()=>{ alert('Navigation page placeholder'); });
+    $('.nav-page').addEventListener('click', ()=>{ alert('Navigation page is not up yet :('); });
+    $('#btnPrev').addEventListener('click', ()=>{ alert('no previous yet :('); });
+    $('#btnNext').addEventListener('click', ()=>{ alert('no chapter 2 yet :('); });
+      
+// goTo(currentSceneIndex()+1); });/-->
+    $('#btnPage').addEventListener('click', ()=>{ alert('Navigation page is not up yet :('); });
 
     window.addEventListener('keydown', (e)=>{
       if(['ArrowLeft','ArrowRight'].includes(e.key)){
