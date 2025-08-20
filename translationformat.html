@@ -7,18 +7,10 @@
   <style>
     :root{
       --ink: #222;
-      --accent: #b5bcff;
-      --accent-2: #f878b8;
-      --accent-3: #ff82cf;
+      --accent: #ff7ad9;
+      --accent-2: #7adfff;
       --bubble: #ffffff;
-      --bubble-2: #c8bfff;
-      --bubble-3: #d7a6ee;
-      --bubble-4: #a6cefc;
-      --bubble-5: #95f3f3;
-      --bubble-6: #89da96;
-      --bubble-7: #f9fab0;
-      --bubble-8: #fcc79c;
-      --divider: #cdb1d8;
+      --divider: #ffd166;
       --shadow: 0 6px 18px rgba(0,0,0,.08);
       --radius: 20px;
       --transition: all .25s ease;
@@ -57,7 +49,7 @@
     .avatar:hover{transform:rotate(-6deg) scale(1.1);border-color:var(--accent-2)}
 
     .bubble-wrap{display:flex;flex-direction:column;align-items:flex-start}
-    .bubble-name{font-weight:bold;margin-bottom:4px;margin-left:6px;color:#4fafe7}
+    .bubble-name{font-weight:bold;margin-bottom:4px;margin-left:6px;color:#6a00f4}
 
     .bubble{background:var(--bubble);border-radius:var(--radius);padding:14px 18px;box-shadow:var(--shadow);position:relative;transition:var(--transition);max-width:600px}
     .bubble::after{content:"";position:absolute;left:-12px;top:20px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid var(--bubble)}
@@ -93,40 +85,38 @@
     <a class="home-btn" href="https://bleppybee.github.io/" title="Home">🐝</a>
   </header>
 
-  <div class="hex-img-wrap">
+  <div class="wrap">
     <div class="meta">
       <div class="release">Release Date: <em>2025-08-20</em></div>
       <h2>Story Title: <em>Title of Story</em></h2>
       <div class="characters">
         <b>Characters:</b>
-         <img src="Heads/Hinata_ES_Head.png" alt="Hinata" >
-         <img src="Heads/Yuuta_ES_Head.png" alt="Yuuta">
-         <img src="Heads/Esu_ES_Head.png" alt="Esu">
+         <img src="/images/Heads/Hinata_ES_Head.png" alt="Hinata" >
+         <img src="images/YuutaIcon1.png" alt="Yuuta">
       </div>
     </div>
 
     <section id="script"
-      data-avatars='{"Yuuta":"Icons/Yuuta2.png","Hinata":"Icons/Hina1.png","Esu":"Icons/Esu1.png"}'>
-      <p>:: ⌂ Spring • Tokyo ::</p>
-      <p><b>Yuuta:</b> First day of spring! I brought mochi for everyone.</p>
-      <p>And it’s strawberry flavored!</p>
-      <p><b>Hinata:</b> I brought… an umbrella. It’s definitely going to rain sunshine today.</p>
-      <p>Each one unique, like sprinkles.</p>
-      <p><b>Esu:</b> Example: The word <span class="note" data-note="Mochi is a Japanese rice cake made of glutinous rice.">mochi</span> refers to a Japanese rice cake.</p>
-          <p>:: ⌂ Location • Seisoukan Apartments ::</p> 
-      <p><b>Esu:</b> First day of spring! I brought mochi for everyone.</p>
-      <p>And it’s strawberry flavored!</p>
-      <p><b>Yuuta:</b> I brought… an umbrella. It’s definitely going to rain sunshine today.</p>
-      <p>Each one unique, like sprinkles.</p>
-      <p><b>Hinata:</b> Bruh <span class="note" data-note="I'm a">lololol</span> abdd</p>
-      </section id="script">
+      data-avatars='{"Hinata":"https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=240&h=240&fit=crop&crop=faces","Yuuta":"https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=240&h=240&fit=crop&crop=faces","Narrator":""}'>
 
-    <section id="figure"><figure><b><img src="Test_Cap.png" alt="testcap"></figure></section>
+      <p>:: 🌸 Spring • Tokyo ::</p>
+      <p><b>Janedoe:</b> First day of spring! I brought mochi for everyone.</p>
+      <p>And it’s strawberry flavored!</p>
+      <p><b>Bob:</b> I brought… an umbrella. It’s definitely going to rain sunshine today.</p>
+      <p>Each one unique, like sprinkles.</p>
+      <p><b>Narrator:</b> Example: The word <span class="note" data-note="Mochi is a Japanese rice cake made of glutinous rice.">mochi</span> refers to a Japanese rice cake.</p>
+
+      <p><figure>
+        <img src="https://placekitten.com/400/220" alt="Example screenshot">
+        <figcaption>Insert Title Here.</figcaption>
+      </figure></p>
+
+    </section>
 
     <div class="controls">
-      <button class="btn" id="btnPrev">⟨◀</button>
-      <button class="btn" id="btnPage">⋮</button>
-      <button class="btn" id="btnNext">▶⟩</button>
+      <button class="btn" id="btnPrev">⟨ Prev</button>
+      <button class="btn" id="btnPage">Navi</button>
+      <button class="btn" id="btnNext">Next ⟩</button>
     </div>
 
     <div class="tl-notes">
