@@ -39,7 +39,7 @@
       position: relative;
       width: 220px;
       height: 200px;
-      background: #fff7cc;
+      background: #383c47;
       margin: auto;
       clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%);
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -133,11 +133,22 @@
       background: #ffd96600;
       color: #ffdc14;
     }
+
+    .bee-link {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(.25,.1,.25,1);
+    }
+    .bee-link:hover {
+      transform: scale(1.18) rotate(-8deg);
+      filter: drop-shadow(0 2px 8px #ffb80088);
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>🐝</h1>
+    <h1>
+      <a href="https://bleppybee.github.io/" class="bee-link" style="text-decoration:none; color:inherit;">🐝</a>
+    </h1>
     <p>bee</p>
     <button id="night-toggle">⏾⋆.˚</button>
   </header>
@@ -145,13 +156,13 @@
   <main class="hex-grid">
     <div class="hex" id="hex-1">
       <a href="https://bleppybee.github.io/translations" target="_blank" style="text-decoration:none; color:inherit;">
-        <img src="images/YuutaIcon1.png" alt="Story 1" id="hex-1-img" style="transition: opacity 0.5s;">
+        <img src="images/YuutaIcon1.png" alt="Story 1" id="hex-1-img">
       </a>
       <div class="banner">translations</div>
     </div>
     <div class="hex" id="hex-2">
       <a href="https://bleppybee.tumblr.com/custom" target="_blank" style="text-decoration:none; color:inherit;">
-        <img src="images/hinaicon1.png" alt="Story 2" id="hex-2-img" style="transition: opacity 0.5s;">
+        <img src="images/hinaicon1.png" alt="Story 2" id="hex-2-img">
       </a>
       <div class="banner">fan stories</div>
     </div>
@@ -165,6 +176,25 @@
       document.body.classList.toggle('night');
     };
 
+    // Easing presets
+    const easings = {
+      "ease": ".25,.1,.25,1",
+      "linear": "0,0,1,1",
+      "ease-in": ".42,0,1,1",
+      "ease-out": "0,0,.58,1",
+      "ease-in-out": ".42,0,.58,1",
+      ".17,.67,.9,.48": ".17,.67,.9,.48"
+    };
+
+    // Choose your easing type here:
+    let chosenEasing = "ease"; // Change to any key above
+
+    // Update transition style for slideshow images
+    document.querySelectorAll('#hex-1-img, #hex-2-img').forEach(img => {
+      img.style.transition = `opacity 0.5s cubic-bezier(${easings[chosenEasing]}), transform 0.5s cubic-bezier(${easings[chosenEasing]})`;
+      img.style.transform = "scale(1.10)";
+    });
+
     // Hex 1 slideshow
     const images1 = [
       "images/YuutaIcon1.png"
@@ -175,25 +205,43 @@
     let idx1 = 0;
     let interval1 = null;
 
+    hex1Img.style.transition = `opacity 0.5s cubic-bezier(${easings[chosenEasing]}), transform 0.5s cubic-bezier(${easings[chosenEasing]})`;
+    hex1Img.style.transform = "scale(1.10)";
+
     hex1.addEventListener('mouseenter', function() {
       interval1 = setInterval(() => {
-        hex1Img.style.opacity = 0;
-        setTimeout(() => {
-          idx1 = (idx1 + 1) % images1.length;
-          hex1Img.src = images1[idx1];
-          hex1Img.style.opacity = 1;
-        }, 250);
-      }, 1200);
+        let nextIdx1 = (idx1 + 1) % images1.length;
+        let nextImg1 = new Image();
+        nextImg1.src = images1[nextIdx1];
+        nextImg1.onload = function() {
+          hex1Img.style.opacity = 0;
+          hex1Img.style.transform = "scale(1.07)";
+          setTimeout(() => {
+            hex1Img.src = images1[nextIdx1];
+            hex1Img.style.opacity = 1;
+            hex1Img.style.transform = "scale(1.13)";
+            idx1 = nextIdx1;
+            setTimeout(() => {
+              hex1Img.style.transform = "scale(1.10)";
+            }, 500);
+          }, 500);
+        };
+      }, 2200); // Show longer
     });
 
     hex1.addEventListener('mouseleave', function() {
       clearInterval(interval1);
       idx1 = 0;
       hex1Img.style.opacity = 0;
+      hex1Img.style.transform = "scale(1.07)";
       setTimeout(() => {
         hex1Img.src = images1[0];
         hex1Img.style.opacity = 1;
-      }, 250);
+        hex1Img.style.transform = "scale(1.13)";
+        setTimeout(() => {
+          hex1Img.style.transform = "scale(1.10)";
+        }, 500);
+      }, 500);
     });
 
     // Hex 2 slideshow
@@ -206,26 +254,80 @@
     let idx2 = 0;
     let interval2 = null;
 
+    hex2Img.style.transition = `opacity 0.5s cubic-bezier(${easings[chosenEasing]}), transform 0.5s cubic-bezier(${easings[chosenEasing]})`;
+    hex2Img.style.transform = "scale(1.10)";
+
     hex2.addEventListener('mouseenter', function() {
       interval2 = setInterval(() => {
-        hex2Img.style.opacity = 0;
-        setTimeout(() => {
-          idx2 = (idx2 + 1) % images2.length;
-          hex2Img.src = images2[idx2];
-          hex2Img.style.opacity = 1;
-        }, 250);
-      }, 1200);
+        let nextIdx2 = (idx2 + 1) % images2.length;
+        let nextImg2 = new Image();
+        nextImg2.src = images2[nextIdx2];
+        nextImg2.onload = function() {
+          hex2Img.style.opacity = 0;
+          hex2Img.style.transform = "scale(1.07)";
+          setTimeout(() => {
+            hex2Img.src = images2[nextIdx2];
+            hex2Img.style.opacity = 1;
+            hex2Img.style.transform = "scale(1.13)";
+            idx2 = nextIdx2;
+            setTimeout(() => {
+              hex2Img.style.transform = "scale(1.10)";
+            }, 500);
+          }, 500);
+        };
+      }, 2200); // Show longer
     });
 
     hex2.addEventListener('mouseleave', function() {
       clearInterval(interval2);
       idx2 = 0;
       hex2Img.style.opacity = 0;
+      hex2Img.style.transform = "scale(1.07)";
       setTimeout(() => {
         hex2Img.src = images2[0];
         hex2Img.style.opacity = 1;
-      }, 250);
+        hex2Img.style.transform = "scale(1.13)";
+        setTimeout(() => {
+          hex2Img.style.transform = "scale(1.10)";
+        }, 500);
+      }, 500);
     });
+
+function typewriterEffect(element, text, speed = 110) { // <-- slower speed
+  element.textContent = "";
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
+
+const hex1Banner = document.querySelector('#hex-1 .banner');
+const hex2Banner = document.querySelector('#hex-2 .banner');
+const hex1Text = "translations";
+const hex2Text = "fan stories";
+
+// Store original text so it can be restored
+hex1Banner.dataset.original = hex1Text;
+hex2Banner.dataset.original = hex2Text;
+
+document.getElementById('hex-1').addEventListener('mouseenter', function() {
+  typewriterEffect(hex1Banner, hex1Text);
+});
+document.getElementById('hex-1').addEventListener('mouseleave', function() {
+  hex1Banner.textContent = hex1Banner.dataset.original;
+});
+
+document.getElementById('hex-2').addEventListener('mouseenter', function() {
+  typewriterEffect(hex2Banner, hex2Text);
+});
+document.getElementById('hex-2').addEventListener('mouseleave', function() {
+  hex2Banner.textContent = hex2Banner.dataset.original;
+});
   </script>
 </body>
 </html>
