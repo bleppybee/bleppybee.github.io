@@ -127,9 +127,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.3s;
+      transition: background 0.8s, 0.3s cubic-bezier(.25,.1,.25,1);
     }
     #night-toggle:hover {
+      transform: scale(1.18) rotate(-8deg);
       background: #ffd96600;
       color: #ffdc14;
     }
