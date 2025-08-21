@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Script — Fun & Colorful</title>
+  <style>
+    :root{
+      --ink: #cf6a99;
+      --accent: #ff9bd9;
+      --accent-2: #fbff00;
+      --accent-3: #ff82cf;
+      --bubble: #ffffff;
+      --bubble2: #dad5f8;
+      --bubble3: #d7a6ee;
+      --bubble4: #a6cefc;
+      --bubble5: #95f3f3;
+      --bubble6: #89da96;
+      --bubble7: #f9fab0;
+      --bubble8: #fcc79c;
+      --divider: #ceabdb;
+      --shadow: 0 6px 18px rgb(253, 146, 235);
+      --radius: 20px;
+      --transition: all .25s ease;
+    }
+    html,body{position:relative;margin-left: 13%;margin-right: 12%;margin-top: 2%;background:#7ef8de;color:var(--ink);font-family:"Chalkboard SE","Monospace","Chalkboard SE",cursive}
+
+    .wrap{max-width:820px;margin:0 auto;padding:72px 20px 120px;position:relative}
+    header{position:sticky;top:0;margin-right: -10%;margin-left: -10%;background:#7ef8de;z-index:3;padding:16px 0 8px;border-bottom:2px solid rgba(0, 0, 0, 0);display:flex;align-items:center;justify-content:space-between}
+    h1{margin:0;font-size:32px;letter-spacing:.5px}
+
+    .home-btn{font-size:28px;text-decoration:none;transition:var(--transition)}
+    .home-btn:hover{transform:rotate(20deg) scale(1.2)}
+
+    .meta{margin:20px 0;padding:20px;border:2px dashed var(--divider);border-radius:16px;box-shadow:var(--shadow);background:#ff9bd9;transition:var(--transition)}
+    .meta:hover{transform:translateY(-2px) scale(1.01)}
+    .meta h2{margin-top:0;color:#1b1017}
+    .release{font-size:14px;opacity:.8;margin-bottom:12px}
+
+    .characters{margin:12px 0;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .characters b{flex-basis:100%;font-size:16px;color:#0e0f1d}
+    .characters img{width:48px;height:48px;border-radius:50%;box-shadow:var(--shadow);transition:var(--transition)}
+    .characters img:hover{transform:scale(1.15) rotate(-5deg)}
+
+    .nav-btn{position:fixed;top:50%;transform:scale(-50%);z-index:10;border:none;background:white;box-shadow:var(--shadow);width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+    .nav-btn:hover{background:var(--accent);color:white;transform:translateY(-50%) scale(1.15);}
+    .nav-prev{left:12px}
+    .nav-next{right:72px}
+    .nav-page{right:12px}
+
+    .scene{margin:28px 0}
+    .line{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:flex-start;margin:18px 0;transition:var(--transition)}
+    .line.no-avatar{grid-template-columns:56px 1fr;margin-top:-12px}
+
+    .avatar{width:48px;height:48px;border-radius:50%;background:#eee center/cover no-repeat;border:3px solid var(--accent);box-shadow:var(--shadow);transition:var(--transition)}
+    .avatar.initials{display:flex;align-items:center;justify-content:center;font-weight:bold}
+    .avatar:hover{transform:rotate(-6deg) scale(1.1);border-color:var(--accent-2)}
+
+    .bubble-wrap{display:flex;flex-direction:column;align-items:flex-start}
+    .bubble-name{font-weight:bold;margin-bottom:4px;margin-left:6px;color:#4fafe7}
+
+    .bubble{background:var(--bubble);border-radius:var(--radius);padding:14px 18px;box-shadow:var(--shadow);position:relative;transition:var(--transition);max-width:600px}
+    .bubble::after{content:"";position:absolute;left:-12px;top:20px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid var(--bubble)}
+    .bubble:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+
+    .line.no-avatar .bubble::after{display:none}
+
+    .divider{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin:30px 0}
+    .divider .rule{height:2px;background:linear-gradient(90deg, var(--accent), var(--divider), var(--accent-2));border-radius:6px}
+    .divider .chip{background:white;border:2px dashed var(--divider);padding:6px 14px;border-radius:999px;box-shadow:var(--shadow);font-weight:bold;transition:var(--transition)}
+    .divider .chip:hover{background:var(--accent);color:white}
+
+    .figure{position:relative;margin: 40px auto;max-width:90%;text-align:center}
+    .figure img{max-width:100%;border-radius:12px;box-shadow:var(--shadow);transition:var(--transition)}
+    .figure img:hover{transform:scale(1.03)}
+    .figure figcaption{font-size:14px;margin-top:6px;opacity:0}
+
+    .controls{position:relative;bottom:0;display:flex;gap:12px;justify-content:center;padding:14px 0;background:rgba(255, 255, 255, 0)}
+    .btn{border:none;background:linear-gradient(135deg, var(--accent), var(--accent-2));color:rgb(255, 255, 255);padding:12px 18px;border-radius:16px;cursor:pointer;box-shadow:var(--shadow);font-weight:bold;transition:var(--transition)}
+    .btn:hover{filter:brightness(1.1);transform:translateY(-2px) scale(1.03)}
+    .btn:active{transform:translateY(1px)}
+
+    .tl-notes{margin-top:60px;padding:20px;border-top:3px dashed var(--divider);font-size:14px;line-height:1.5;position:relative}
+    .tl-notes::before{content:"TL NOTES";position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:rgb(255, 255, 255);padding:0 12px;color:#6a00f4;font-weight:bold;border:2px dashed var(--divider);border-radius:12px;box-shadow:var(--shadow)}
+    .tl-notes h2{display:none}
+
+   .note {
+  color: var(--accent-3);   /* 👈 word itself is accent--3 */
+  font-weight: bold;
+}
+
+.note:hover::after {
+  left: 50%;
+  transform: translateX(-50%);
+  content: attr(data-note);
+  position: absolute;
+  top: auto;
+  bottom: 80%; /* default: above the word */
+  margin-bottom: 6px;
+  background: #fff;
+  border: 1px solid var(--divider);
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  white-space: pre-wrap;        /* allow wrapping */
+  max-width: 860px;           /* prevent sprawling horizontally */
+  line-height: 1.4;
+  font-size: 13px;
+  color: var(--ink);
+  z-index: 9999;              /* keep it on top */
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <a class="home-btn" href="https://bleppybee.github.io/" title="Home">🐝</a>
+  </header>
+
+  <div class="hex-img-wrap">
+    <div class="meta">
+      <div class="release">Release Date: <em>Feb-02-2023</em></div>
+      <h2>Story Title: <em>Godspeed</em></h2>
+      <small>Chapter 2</small>
+      <div class="characters">
+        <strong>Characters:</strong>
+         <img src="images/Heads/ES_Head_Tatsumi.png" alt="Tatsumi" >
+         <img src="images/Heads/ES_Head_Hinata.png" alt="Hinata">
+         <img src="images/Heads/ES_Head_Jun.png" alt="Jun">
+      </div>
+    </div>
+
+    <section id="script"
+      data-avatars='{"Tatsumi":"images/Icons/Tatsumi1.png","Hinata":"images/Icons/Hina1.png","Jun":"images/Icons/Jun1.png","Midori":"images/Icons/Midori1.png"}'>
+      <p>:: ▼ Location • ⛍ Car ::</p>
+<p><figure> :: <img src="https://64.media.tumblr.com/bf14ae7ebf5fc8b387a649dbfa8897d9/a2ccdea33a7dcf75-6a/s1280x1920/57e2e0b035937b1b4707face786a91e302cf661a.pnj" /> :: </figure>
+<p><strong>Tatsumi:</strong> ~ ♪</p>
+<p><strong>Jun:</strong> Tatsumi-senpai, you&rsquo;re in a good mood&hellip;&hellip; woh!</p>
+<p><strong>Hinata:</strong> Ahaha, we bounced again! It&rsquo;s like a fun attraction ride ~, Kazehaya senpai&rsquo;s driving can&rsquo;t be described any other way! ☆</p>
+<p><strong>Jun:</strong> It&rsquo;s still a weird claim to call it a fun ride ~. If I hadn&rsquo;t taken anti-sickness medication, I might have thrown up by now.</p>
+<p><strong>Hinata:</strong> Wow, sharp turns without slowing down! He just does more and more, like an action movie! If only a mysterious organization were chasing us in a helicopter! ☆</p>
+<p><strong>Jun:</strong> No, no, I don&rsquo;t want to be chased&mdash;today&rsquo;s not about that kind of excitement, right, Anzu-san?</p>
+<p>&hellip;?</p>
+<p>(From here it&rsquo;s hard to see it. Anzu-san in the passenger seat has turned a bad complexion, right~?)</p>
+<p>(The medicine might not have kicked in yet since she took it late&hellip;)</p>
+<p>&hellip;Er, Tatsumi-Senpai, can I ask?</p>
+<p>I&rsquo;m feeling nauseous, so pulling off on the speed might be really helpful.</p>
+<p><strong>Tatsumi:</strong> Oops, excuse me. It seems that I got a little too carried away, since it&rsquo;s been a while since I&rsquo;ve driven.</p>
+<p>Let&rsquo;s stop by a convenience store to take a small break</p>
+<p><strong>Jun:</strong> Yes, thank you!</p>
+      <p>:: One Hour Later • ▼ Beachside • ⛍ Car::</p>
+<figure><img src="https://64.media.tumblr.com/c74085e51596006668a7feac00b0e323/a2ccdea33a7dcf75-45/s1280x1920/3d3dcd689d47ab22861cc2faa21c2483af124f46.pnj" /></figure>
+<p><strong>Tatsumi:</strong> Well, we&rsquo;ve arrived at our destination&hellip;&hellip;</p>
+<p>Could Jun-san and Hinata-san please hop out ahead of us?</p>
+<p>It would be a shame to wake up Anzu-san&rsquo;s peaceful sleep, and I&rsquo;ll just stay here with her until she wakes up.</p>
+<p>Gotcha. In that case, we&rsquo;ll take a little walk around.</p>
+<p><strong>Hinata:</strong> Out I go~. Uu~, it feels so good ♪ to stretch out!</p>
+<p><strong>Tatsumi:</strong> &hellip;&hellip;..</p>
+<p>You can smell the tide. This place is so wonderfully peaceful, untouched by the noise and busyness of the world.</p>
+<p>Jun-san said one thing, but he seems fine right now&hellip;. Actually, If anything, it&rsquo;s Anzu-san who&ndash;</p>
+<p>&hellip;.Ah. He must have bowed out in her place. Jun-san is such a kind child.</p>
+<figure><img src="https://64.media.tumblr.com/199dc138fc3a033df41080ccb5c0413d/a2ccdea33a7dcf75-5d/s1280x1920/023c149f5027c80805ac43a24d45faa2f8b26ea0.pnj" /></figure>
+<p>Oh, &hellip;Good morning, Anzu-san. Mhm, we only just arrived.</p>
+<p>No, there&rsquo;s no hurry. That car sickness is still painful, isn&rsquo;t it? Rest for now.</p>
+<p>&hellip;You think your motion sickness is due to fatigue and lack of sleep, since you stayed up late last night?</p>
+<p>It&rsquo;s okay to blame it on my driving. You&rsquo;re too kind, aren&rsquo;t you?</p>
+<p><strong>Jun:</strong> Tatsumi-senpai&hellip; Ah, Anzu-san, you&rsquo;re up!</p>
+<p><strong>Hinata:</strong> We bought some ice cream from the store over there. Let&rsquo;s eat in the car.</p>
+<p>&hellip;Huh? Since you slept soundly, you&rsquo;re fine now, and want to go outside instead?</p>
+<p><strong>Tatsumi:</strong> It seems so. Let&rsquo;s all take a walk along the coastline.</p>
+<blockquote>
+      <p>:: A Few Hours Later • ⛍ Car ::</p>
+</blockquote>
+<figure><img src="https://64.media.tumblr.com/ca6594e715c9595444b2bc5c9b0b604e/a2ccdea33a7dcf75-22/s1280x1920/d033ffa84ebd86bddd544d97c8570bb8ee7acb0f.pnj" /></figure>
+<p><strong>Tatsumi:</strong> I was going to be very conscious of driving slowly on the way back home, but&hellip;</p>
+<p>It seems like that isn&rsquo;t necessary. Thanks to this traffic jam, there&rsquo;s no choice but to drive at a slow crawl.</p>
+<p>I&rsquo;m probably the only person who&rsquo;s grateful about being in a traffic jam, though. Fufu&hellip;</p>
+<p>Jun-san and Hinata-san are sound asleep. You can rest too, Anzu-san. I&rsquo;ll wake you up when we&rsquo;re there.</p>
+<p>&hellip;Oh, you&rsquo;re saying you&rsquo;re not tired because you slept in the car on the way? Then how about I turn on the radio so Anzu-san doesn&rsquo;t feel bored?</p>
+<p>Hm, seems there&rsquo;s a talk show on with comedians. They&rsquo;re in the middle of a listener request corner segment.</p>
+<p>&hellip;This listener is saying they got into idols because of &ldquo;ALKALOID&rdquo;?</p>
+<p>Their request song is &ldquo;Tsubasa Moratorium&rdquo; - our debut song</p>
+<p>&hellip;For that to be playing at this exact moment might be a sign from God. What could it mean, hearing the voice of a fan on a program with seemingly nothing to do with idols?</p>
+<p>&hellip;&hellip;&hellip;.</p>
+<p>There might be more fans out there, showing their support than what I&rsquo;d initially realised.</p>
+<p>I am simply human, so I won&rsquo;t be able to answer all of their prayers. Even so, I want to try as hard as possible to respond to whomever I am able, to return love with love.</p>
+<p>I would like my Feature Live to reflect how much I appreciate the fans, both on the stage and within the pamphlet.</p>
+<p>&ldquo;Leave it to me&rdquo;, you think? Yes, I believe I can.</p>
+<p>Oh&hellip; it looks like we&rsquo;re about to be out of this traffic situation.</p>
+<figure><img src="https://64.media.tumblr.com/c146b0485a2c975629347fce5b07b923/a2ccdea33a7dcf75-d0/s1280x1920/50af987a4eaa9699f9b98bbd24c38a4cc51e41ba.pnj" /></figure>
+<p><strong>Hinata:</strong> Kazehaya Senpaaai&hellip;&hellip; &hellip;.It&rsquo;s getting dark and it&rsquo;s dangerous, so please drive safely~&hellip; Mumble, mumble&hellip;☆</p>
+<p><strong>Tatsumi:</strong> Was that&hellip;.. sleep-talking just now? Or is he just pretending to be asleep?</p>
+<figure><img src="https://64.media.tumblr.com/36ad803ab921a613b08bb40a0d046018/a2ccdea33a7dcf75-df/s1280x1920/95eee314b401b682af0d9fff159313641820322e.pnj" /></figure>
+<p>Anyway, yes. I&rsquo;ll be sure to make it a safe drive back, hm? We can&rsquo;t say the drive is complete until we&rsquo;ve returned home&hellip;♪</p>
+      <p>:: FIN ::</p>
+</div>
+      </section id="script">
+
+<!-- section id="figure"><img src="images/testcap.png" alt="testcap"></section> -->
+
+    <div class="controls">
+      <button class="btn" id="btnPrev">⟨◀</button>
+      <button class="btn" id="btnPage">⋮</button>
+      <button class="btn" id="btnNext">▶⟩</button>
+
+    </div>
+  </div>
+
+  <button class="nav-btn nav-prev">⟨</button>
+  <button class="nav-btn nav-next">⟩</button>
+  <button class="nav-btn nav-page">☰</button>
+
+  <script>
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    function makeInitials(name){
+      return name.split(/\s+/).map(w=>w[0]||"").join("").slice(0,2).toUpperCase();
+    }
+
+    (function buildDialogue(){
+      const script = document.getElementById('script');
+      if(!script) return;
+
+      let avatarMap = {};
+      try { avatarMap = JSON.parse(script.dataset.avatars || '{}'); }
+      catch(e){ console.warn('Invalid data-avatars JSON'); }
+
+      const raw = $$('#script > p');
+      script.innerHTML = '';
+
+      let sceneCount = 0;
+      let lastAvatar = null;
+      let lastName = null;
+
+      raw.forEach(p => {
+        const text = p.innerHTML.trim();
+
+        if(/^::\s*.*\s*::$/.test(p.textContent.trim())){
+          const label = p.textContent.replace(/^::\s*|\s*::$/g,'').trim();
+          const scene = document.createElement('div');
+          scene.className = 'scene';
+          scene.id = 'scene-' + (++sceneCount);
+          const div = document.createElement('div');
+          div.className = 'divider';
+          div.innerHTML = `<div class="rule"></div><div class="chip">${label}</div><div class="rule"></div>`;
+          scene.appendChild(div);
+          script.appendChild(scene);
+          lastAvatar = null;
+          lastName = null;
+          return;
+        }
+
+        if(p.querySelector('figure')){
+          const scene = script.lastElementChild || document.createElement('div');
+          if(!scene.classList.contains('scene')){
+            scene.className = 'scene';
+            scene.id = 'scene-' + (++sceneCount);
+            script.appendChild(scene);
+          }
+          scene.appendChild(p.querySelector('figure'));
+          return;
+        }
+
+        const strong = p.querySelector('strong');
+        if(strong && /:\s*$/.test(strong.textContent)){
+          const name = strong.textContent.replace(/:\s*$/,'').trim();
+          const contentHTML = p.innerHTML.replace(p.querySelector('strong').outerHTML,'').trim();
+
+          let currentScene = script.lastElementChild;
+          if(!currentScene || !currentScene.classList.contains('scene')){
+            currentScene = document.createElement('div');
+            currentScene.className = 'scene';
+            currentScene.id = 'scene-' + (++sceneCount);
+            script.appendChild(currentScene);
+          }
+
+          const line = document.createElement('div');
+          line.className = 'line';
+
+          const avatar = document.createElement('div');
+          avatar.className = 'avatar';
+          const url = avatarMap[name] || '';
+          if(url){ avatar.style.backgroundImage = `url(${url})`; }
+          else { avatar.classList.add('initials'); avatar.textContent = makeInitials(name); }
+
+          const bubbleWrap = document.createElement('div');
+          bubbleWrap.className = 'bubble-wrap';
+          const nameEl = document.createElement('div');
+          nameEl.className = 'bubble-name';
+          nameEl.textContent = name;
+          const bubble = document.createElement('div');
+          bubble.className = 'bubble';
+          bubble.innerHTML = contentHTML;
+
+          bubbleWrap.appendChild(nameEl);
+          bubbleWrap.appendChild(bubble);
+          line.appendChild(avatar);
+          line.appendChild(bubbleWrap);
+          currentScene.appendChild(line);
+
+          lastAvatar = avatar;
+          lastName = name;
+          return;
+        }
+
+        let currentScene = script.lastElementChild;
+        if(!currentScene || !currentScene.classList.contains('scene')){
+          currentScene = document.createElement('div');
+          currentScene.className = 'scene';
+          currentScene.id = 'scene-' + (++sceneCount);
+          script.appendChild(currentScene);
+        }
+        if(lastAvatar && lastName){
+          const line = document.createElement('div');
+          line.className = 'line no-avatar';
+          const spacer = document.createElement('div');
+          spacer.style.width = '48px';
+          const bubbleWrap = document.createElement('div');
+          bubbleWrap.className = 'bubble-wrap';
+          const bubble = document.createElement('div');
+          bubble.className = 'bubble';
+          bubble.innerHTML = p.innerHTML;
+          bubbleWrap.appendChild(bubble);
+          line.appendChild(spacer);
+          line.appendChild(bubbleWrap);
+          currentScene.appendChild(line);
+        }
+      });
+    })();
+
+    function currentSceneIndex(){
+      const scenes = $$('#script .scene');
+      const pos = window.scrollY + window.innerHeight * 0.35;
+      let idx = 0;
+      scenes.forEach((s,i)=>{ if(s.offsetTop <= pos) idx = i; });
+      return idx;
+    }
+
+    function goTo(idx){
+      const scenes = $$('#script .scene');
+      if(!scenes.length) return;
+      idx = Math.max(0, Math.min(idx, scenes.length-1));
+      scenes[idx].scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    document.querySelectorAll('.note').forEach(el=>{
+  el.addEventListener('mouseenter', e=>{
+    const tip = document.createElement('div');
+    tip.className = 'tooltip';
+    tip.textContent = el.dataset.note;
+    document.body.appendChild(tip);
+    const rect = el.getBoundingClientRect();
+    const tipRect = tip.getBoundingClientRect();
+
+    // Default above
+    let top = rect.top - tipRect.height - 8;
+    let left = rect.left + rect.width/2 - tipRect.width/2;
+
+    // If off-screen above, put below
+    if(top < 0) top = rect.bottom + 8;
+
+    // Clamp horizontally
+    if(left < 8) left = 8;
+    if(left + tipRect.width > window.innerWidth - 8)
+      left = window.innerWidth - tipRect.width - 8;
+
+    tip.style.position = 'absolute';
+    tip.style.top = top + 'px';
+    tip.style.left = left + 'px';
+
+    el._tooltip = tip;
+  });
+
+  el.addEventListener('mouseleave', e=>{
+    if(el._tooltip){ el._tooltip.remove(); el._tooltip=null; }
+  });
+});
+
+
+    $('.nav-prev').addEventListener('click', ()=>{ goTo(currentSceneIndex()-1); });
+    $('.nav-next').addEventListener('click', ()=>{ goTo(currentSceneIndex()+1); });
+    $('.nav-page').addEventListener('click', ()=>{ goTo(url= "https://bleppybee.github.io/Translations"); });
+    $('#btnPrev').addEventListener('click', ()=>{ goTo(url= "https://bleppybee.github.io/Godspeed1"); });
+    $('#btnNext').addEventListener('click', ()=>{ goTo(url= "https://bleppybee.github.io/Godspeed1"); });
+      
+// goTo(currentSceneIndex()+1); });/-->
+    $('#btnPage').addEventListener('click', ()=>{ alert('Navigation page is not up yet :('); });
+
+    window.addEventListener('keydown', (e)=>{
+      if(['ArrowLeft','ArrowRight'].includes(e.key)){
+        e.preventDefault();
+        goTo(currentSceneIndex() + (e.key==='ArrowRight'? 1 : -1));
+      }
+    });
+
+  </script>
+</body>
+</html>
+
