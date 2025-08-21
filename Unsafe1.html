@@ -266,12 +266,11 @@
 
     $('.nav-prev').addEventListener('click', ()=>{ goTo(currentSceneIndex()-1); });
     $('.nav-next').addEventListener('click', ()=>{ goTo(currentSceneIndex()+1); });
-    $('.nav-page').addEventListener('click', ()=>{ open(window.location = "https://bleppybee.github.io/translations"); });
-    $('#btnPrev').addEventListener('click', ()=>{ open(window.location = "https://bleppybee.github.io/Unsafe3"); });
-    $('#btnNext').addEventListener('click', ()=>{ open(window.location = "https://bleppybee.github.io/Unsafe2"); });
-      
-// goTo(currentSceneIndex()+1); });/-->
-    $('#btnPage').addEventListener('click', ()=>{ open(window.location = "https://bleppybee.github.io/translations"); });
+    $('.nav-page').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/translations"); });
+    $('#btnPrev').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/Unsafe3"); });
+    $('#btnNext').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/Unsafe2"); });
+
+    $('#btnPage').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/translations"); });
 
     window.addEventListener('keydown', (e)=>{
       if(['ArrowLeft','ArrowRight'].includes(e.key)){
