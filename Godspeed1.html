@@ -396,12 +396,12 @@
 
     $('.nav-prev').addEventListener('click', ()=>{ goTo(currentSceneIndex()-1); });
     $('.nav-next').addEventListener('click', ()=>{ goTo(currentSceneIndex()+1); });
-    $('.nav-page').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/translations"); });
-    $('#btnPrev').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/Godspeed2"); });
-    $('#btnNext').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/Godspeed2"); });
+    $('.nav-page').addEventListener('click', ()=>{ location = "https://bleppybee.github.io/translations"; });
+    $('#btnPrev').addEventListener('click', ()=>{ location = "https://bleppybee.github.io/Godspeed2"; });
+    $('#btnNext').addEventListener('click', ()=>{ location = "https://bleppybee.github.io/Godspeed2"; });
       
 // goTo(currentSceneIndex()+1); });/-->
-    $('#btnPage').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/translations"); });
+    $('#btnPage').addEventListener('click', ()=>{ location = "https://bleppybee.github.io/translations"; });
 
     window.addEventListener('keydown', (e)=>{
       if(['ArrowLeft','ArrowRight'].includes(e.key)){
