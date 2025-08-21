@@ -82,9 +82,9 @@
 <!-- section id="figure"><img src="images/testcap.png" alt="testcap"></section> -->
 
     <div class="controls">
-      <button class="btn" id="btnPrev">⟨◀</button>
-      <button class="btn" id="btnPage">⋮</button>
-      <button class="btn" id="btnNext">▶⟩</button>
+      <button class="btn" id="btnPrev" target="_self" >⟨◀</button>
+      <button class="btn" id="btnPage" target="_self" >⋮</button>
+      <button class="btn" id="btnNext" target="_self" >▶⟩</button>
     </div>
 
     <div class="tl-notes">
@@ -267,11 +267,11 @@
 
     $('.nav-prev').addEventListener('click', ()=>{ goTo(currentSceneIndex()-1); });
     $('.nav-next').addEventListener('click', ()=>{ goTo(currentSceneIndex()+1); });
-    $('.nav-page').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/translations"); });
-    $('#btnPrev').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/Unsafe3"); });
-    $('#btnNext').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/Unsafe2"); });
+    $('.nav-page').addEventListener('click', ()=>{ open(window.location.href = "https://bleppybee.github.io/translations"); });
+    $('#btnPrev').addEventListener('click', ()=>{ open(window.location.href = "https://bleppybee.github.io/Unsafe3"); });
+    $('#btnNext').addEventListener('click', ()=>{ open(window.location.href = "https://bleppybee.github.io/Unsafe2"); });
 
-    $('#btnPage').addEventListener('click', ()=>{ open(location = "https://bleppybee.github.io/translations"); });
+    $('#btnPage').addEventListener('click', ()=>{ open(window.location.href = "https://bleppybee.github.io/translations"); });
 
     window.addEventListener('keydown', (e)=>{
       if(['ArrowLeft','ArrowRight'].includes(e.key)){
