@@ -6,33 +6,33 @@
   <title>Dialogue Script — Fun & Colorful</title>
   <style>
     :root{
-      --ink: #cf6a99;
-      --accent: #ff9bd9;
-      --accent-2: #fbff00;
-      --accent-3: #ff82cf;
-      --bubble: #ffffff;
+      --ink: #e0e0e0;
+      --accent: #b9a5cd;
+      --accent-2: #f9fab0;
+      --accent-3: #b880dd;
+      --bubble: #37333d;
       --bubble2: #dad5f8;
       --bubble3: #d7a6ee;
-      --bubble4: #a6cefc;
+      --bubble4: #70ffe7;
       --bubble5: #95f3f3;
       --bubble6: #89da96;
       --bubble7: #f9fab0;
       --bubble8: #fcc79c;
-      --divider: #ceabdb;
-      --shadow: 0 6px 18px rgb(253, 146, 235);
+      --divider: #9798df;
+      --shadow: 0 6px 18px rgba(0, 0, 0, 0.192);
       --radius: 20px;
       --transition: all .25s ease;
     }
-    html,body{position:relative;margin-left: 13%;margin-right: 12%;margin-top: 2%;background:#7ef8de;color:var(--ink);font-family:"Chalkboard SE","Monospace","Chalkboard SE",cursive}
+    html,body{position:relative;margin-left: 13%;margin-right: 12%;margin-top: 2%;background:#4a4656;color:var(--ink);font-family:"Comic Sans MS","Chalkboard SE","Cursive"}
 
     .wrap{max-width:820px;margin:0 auto;padding:72px 20px 120px;position:relative}
-    header{position:sticky;top:0;margin-right: -10%;margin-left: -10%;background:#7ef8de;z-index:3;padding:16px 0 8px;border-bottom:2px solid rgba(0, 0, 0, 0);display:flex;align-items:center;justify-content:space-between}
+    header{position:sticky;top:0;margin-right: -10%;margin-left: -10%;background:#4a4656;z-index:3;padding:16px 0 8px;border-bottom:2px solid rgba(0, 0, 0, 0);display:flex;align-items:center;justify-content:space-between}
     h1{margin:0;font-size:32px;letter-spacing:.5px}
 
     .home-btn{font-size:28px;text-decoration:none;transition:var(--transition)}
     .home-btn:hover{transform:rotate(20deg) scale(1.2)}
 
-    .meta{margin:20px 0;padding:20px;border:2px dashed var(--divider);border-radius:16px;box-shadow:var(--shadow);background:#ff9bd9;transition:var(--transition)}
+    .meta{margin:20px 0;padding:20px;border:2px dashed var(--divider);border-radius:16px;box-shadow:var(--shadow);background:#bcaddf;transition:var(--transition)}
     .meta:hover{transform:translateY(-2px) scale(1.01)}
     .meta h2{margin-top:0;color:#1b1017}
     .release{font-size:14px;opacity:.8;margin-bottom:12px}
@@ -42,7 +42,7 @@
     .characters img{width:48px;height:48px;border-radius:50%;box-shadow:var(--shadow);transition:var(--transition)}
     .characters img:hover{transform:scale(1.15) rotate(-5deg)}
 
-    .nav-btn{position:fixed;top:50%;transform:scale(-50%);z-index:10;border:none;background:white;box-shadow:var(--shadow);width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+    .nav-btn{position:fixed;top:50%;transform:scale(-50%);z-index:10;border:none;background:rgba(194, 212, 238, 0.116);box-shadow:var(--shadow);width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
     .nav-btn:hover{background:var(--accent);color:white;transform:translateY(-50%) scale(1.15);}
     .nav-prev{left:12px}
     .nav-next{right:72px}
@@ -57,17 +57,17 @@
     .avatar:hover{transform:rotate(-6deg) scale(1.1);border-color:var(--accent-2)}
 
     .bubble-wrap{display:flex;flex-direction:column;align-items:flex-start}
-    .bubble-name{font-weight:bold;margin-bottom:4px;margin-left:6px;color:#4fafe7}
+    .bubble-name{font-weight:bold;margin-bottom:4px;margin-left:6px;color:#b9a5cd}
 
     .bubble{background:var(--bubble);border-radius:var(--radius);padding:14px 18px;box-shadow:var(--shadow);position:relative;transition:var(--transition);max-width:600px}
     .bubble::after{content:"";position:absolute;left:-12px;top:20px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid var(--bubble)}
-    .bubble:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+    .bubble:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 20px rgba(37, 1, 26, 0.11)}
 
     .line.no-avatar .bubble::after{display:none}
 
     .divider{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin:30px 0}
     .divider .rule{height:2px;background:linear-gradient(90deg, var(--accent), var(--divider), var(--accent-2));border-radius:6px}
-    .divider .chip{background:white;border:2px dashed var(--divider);padding:6px 14px;border-radius:999px;box-shadow:var(--shadow);font-weight:bold;transition:var(--transition)}
+    .divider .chip{background:rgb(128, 164, 181);border:2px dashed var(--divider);padding:6px 14px;border-radius:999px;box-shadow:var(--shadow);font-weight:bold;transition:var(--transition)}
     .divider .chip:hover{background:var(--accent);color:white}
 
     .figure{position:relative;margin: 40px auto;max-width:90%;text-align:center}
@@ -76,7 +76,7 @@
     .figure figcaption{font-size:14px;margin-top:6px;opacity:0}
 
     .controls{position:relative;bottom:0;display:flex;gap:12px;justify-content:center;padding:14px 0;background:rgba(255, 255, 255, 0)}
-    .btn{border:none;background:linear-gradient(135deg, var(--accent), var(--accent-2));color:rgb(255, 255, 255);padding:12px 18px;border-radius:16px;cursor:pointer;box-shadow:var(--shadow);font-weight:bold;transition:var(--transition)}
+    .btn{border:none;background:linear-gradient(135deg, var(--accent), var(--accent-2));color:rgb(0, 0, 0);padding:12px 18px;border-radius:16px;cursor:pointer;box-shadow:var(--shadow);font-weight:bold;transition:var(--transition)}
     .btn:hover{filter:brightness(1.1);transform:translateY(-2px) scale(1.03)}
     .btn:active{transform:translateY(1px)}
 
