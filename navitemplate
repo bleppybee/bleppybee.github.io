@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Story Title — Chapter Navigation</title>
+
+  <link rel="stylesheet" href="navistyle.css">
+
+</head>
+<body>
+  <button class="corner-btn home-btn" onclick="location.href='index.html'">🐝</button>
+  <button class="corner-btn dark-toggle" onclick="document.body.classList.toggle('dark')">☾</button>
+
+  <div class="center-column">
+    <h1>✨ Story Title – Chapter Navigation</h1>
+    <div class="meta">
+      <div>Release Date: April 1, 2025</div>
+      <div>Author: Your Name • Translator: Bee • Proofreader: Helper</div>
+      <div class="character-section">
+        <h3>Characters:</h3>
+        <div class="character-grid">
+          <div class="character"><img src="https://via.placeholder.com/40x40?text=A" alt="Character A"></div>
+          <div class="character"><img src="https://via.placeholder.com/40x40?text=B" alt="Character B"></div>
+          <div class="character"><img src="https://via.placeholder.com/40x40?text=C" alt="Character C"></div>
+        </div>
+      </div>
+    </div>
+
+    <nav>
+      <div class="arc-divider">Prologue</div>
+      <div class="chapter-grid">
+        <a href="#prologue">Prologue</a>
+      </div>
+      <div class="arc-divider">Arc One</div>
+      <div class="chapter-grid">
+        <a href="#ch1">Chapter 1</a>
+        <a href="#ch2">Chapter 2</a>
+        <a href="#ch3">Chapter 3</a>
+      </div>
+      <div class="arc-divider">Arc Two</div>
+      <div class="chapter-grid">
+        <a href="#ch4">Chapter 4</a>
+        <a href="#ch5">Chapter 5</a>
+        <a href="#ch6">Chapter 6</a>
+      </div>
+      <div class="arc-divider">Epilogue</div>
+      <div class="chapter-grid">
+        <a href="#epilogue">Epilogue</a>
+      </div>
+    </nav>
+
+  </div>
+</body>
+</html>

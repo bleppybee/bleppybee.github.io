@@ -65,9 +65,30 @@
     .divider .chip:hover{background:var(--accent);color:white}
 
     .figure{position:relative;margin: 40px auto;max-width:90%;text-align:center}
-    .figure img{max-width:100%;border-radius:12px;box-shadow:var(--shadow);transition:var(--transition)}
+    .figure img{max-width:100%;height:auto;border-radius:12px;box-shadow:var(--shadow);transition:var(--transition)}
     .figure img:hover{transform:scale(1.03)}
     .figure figcaption{font-size:14px;margin-top:6px;opacity:0}
+
+    .figure-inline {
+  display: inline-block;
+  margin: 10px auto;
+}
+.figure-wrapper {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.figure-wrapper figure {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.figure-wrapper img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
 
     .controls{position:relative;bottom:0;display:flex;gap:12px;justify-content:center;padding:14px 0;background:rgba(255, 255, 255, 0)}
     .btn{border:none;background:linear-gradient(135deg, var(--accent), var(--accent-2));color:rgb(0, 0, 0);padding:12px 18px;border-radius:16px;cursor:pointer;box-shadow:var(--shadow);font-weight:bold;transition:var(--transition)}
@@ -91,7 +112,7 @@
   top: auto;
   bottom: 80%; /* default: above the word */
   margin-bottom: 6px;
-  background: #8c7c58bb;
+  background: #c5b679ed;
   border: 1px solid var(--divider);
   padding: 6px 10px;
   border-radius: 8px;
