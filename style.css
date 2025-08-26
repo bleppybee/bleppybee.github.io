@@ -73,8 +73,13 @@
   margin: 10px auto;
 }
 .figure-wrapper {
-  margin: 20px 0;
+  margin: 24px auto;
+  padding: 12px;
   text-align: center;
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
 }
 
 .figure-wrapper figure {
@@ -88,6 +93,47 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
+blockquote {
+  margin: 24px auto;
+  padding: 0;                 /* remove padding so image can flush edge to edge */
+  max-width: 90%;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;           /* ensure rounded corners clip the image */
+}
+
+/* Let the figure fill the blockquote entirely */
+blockquote figure {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+.blockquote figure:hover{
+  transform:scale(1.15)}
+
+/* Force image to take full width of blockquote */
+blockquote img {
+  display: block;
+  width: 100%;     /* 👈 fills full width */
+  height: auto;    /* 👈 scales height proportionally */
+  border-radius: 0; /* radius handled by blockquote */
+}
+
+/* Optional caption styling */
+blockquote figcaption {
+  margin: 8px 12px;
+  font-size: 14px;
+  color: var(--ink);
+  opacity: 0.85;
+  text-align: center;
+}
+
+
 
     .controls{position:relative;bottom:0;display:flex;gap:12px;justify-content:center;padding:14px 0;background:rgba(255, 255, 255, 0)}
     .btn{border:none;background:linear-gradient(135deg, var(--accent), var(--accent-2));color:rgb(0, 0, 0);padding:12px 18px;border-radius:16px;cursor:pointer;box-shadow:var(--shadow);font-weight:bold;transition:var(--transition)}

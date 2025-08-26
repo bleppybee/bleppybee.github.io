@@ -28,7 +28,7 @@
     <section id="script"
       data-avatars='{"Ritsu":"images/Icons/Ritsu1.png","Niki":"images/Icons/Niki1.png"}'>
       <p>:: ☁ Season • ☀︎ Summer • 2nd Year of ES::</p>
-<figure><img alt="https://cdn.discordapp.com/attachments/778098043726856225/1405080148377600072/image.png?ex=689d865c&amp;is=689c34dc&amp;hm=e1c1b213259b3ee04aafe689d0bd3eeecc91c5dc94b501b312e2bcf8ac931340" class="transparent" src="https://cdn.discordapp.com/attachments/778098043726856225/1405080148377600072/image.png?ex=689d865c&amp;is=689c34dc&amp;hm=e1c1b213259b3ee04aafe689d0bd3eeecc91c5dc94b501b312e2bcf8ac931340" /></figure>
+      <blockquote><figure><img src="images/Unsafecaps/Ch1C1-1.png" /></figure></blockquote>
 <p><strong>Ritsu:</strong> (Ahh, it&rsquo;s so hot&hellip;&hellip;. I feel dehydrated~, I'mma die~)</p>
 <p>(Why is it so hot today when we&rsquo;re just in June? Right now it&rsquo;s the rainy season, so act like the rainy season and hide the sun more.)</p>
 <p>(It&rsquo;s only going to get more and more uncomfortable as we go into the season&hellip;.)</p>
@@ -38,8 +38,7 @@
 <p><strong>???:</strong> &hellip;, &hellip;, &hellip;,</p>
 <p><strong>Ritsu:&nbsp;</strong>Eh, what? I can hear someone making noises from the kitchen.</p>
 <p><strong>???:&nbsp;</strong>Hahh&hellip; another one sacrificed.</p>
-<figure><img src="https://64.media.tumblr.com/4dbcc479d4b7ccc4ef036a1e50e12831/tumblr_inline_t0x98f3Utl1vlqw34_500.png" /></figure>
-<p><strong>Ritsu:&nbsp;</strong>Huh? Sacrifice?</p>
+<blockquote><figure><img src="images/Unsafecaps/Ch1C2.png" /></figure></blockquote><p><strong>Ritsu:&nbsp;</strong>Huh? Sacrifice?</p>
 <p><strong>???:&nbsp;</strong>These <span class="note" data-note="[1] Neck & head.">necks</span></sup> and tailfeathers are just too tricky. It&rsquo;s so hard to work on, I keep shredding them from the force.</p>
 <p>There&rsquo;s nothing I can do when you&rsquo;re already screwed like that. Next, next-</p>
 <p>I hope this next one has more strength&hellip;</p>
@@ -71,8 +70,7 @@
 <p><strong>Niki:</strong> Eh? Isn&rsquo;t that Ritsu-kun? What&rsquo;s up?</p>
 <p><strong>Ritsu: </strong>Don&rsquo;t &lsquo;what&rsquo;s up?&rsquo; me. <em>I</em> understand that it&rsquo;s part of Nikipyon being a chef, but even then you shouldn&rsquo;t be getting the table all bloodied up.</p>
 <p>Wouldn&rsquo;t it shock somebody if they came into the kitchen and saw a bunch of feather and blood splatterings everywhere? Some of the kids can&rsquo;t stand gore or horror.</p>
-<figure><img src="https://64.media.tumblr.com/e1add9fb10462b70032c01c2bebe5960/tumblr_inline_t0x99stFhK1vlqw34_500.png" /></figure>
-<p><strong>Niki:&nbsp;</strong>Huh? It&rsquo;s horror?</p>
+<blockquote><figure><img src="images/Unsafecaps/Ch1C3.png" /></figure></blockquote><p><strong>Niki:&nbsp;</strong>Huh? It&rsquo;s horror?</p>
 <p><strong>Ritsu:&nbsp;</strong>Hm? Is that not it?</p>
 <p>Wait. What is Nikipyon holding in his hand? Is that&hellip;. origami?</p>
 
@@ -106,117 +104,139 @@
       return name.split(/\s+/).map(w=>w[0]||"").join("").slice(0,2).toUpperCase();
     }
 
-    (function buildDialogue(){
-      const script = document.getElementById('script');
-      if(!script) return;
+   (function buildDialogue(){
+  const script = document.getElementById('script');
+  if(!script) return;
 
-      let avatarMap = {};
-      try { avatarMap = JSON.parse(script.dataset.avatars || '{}'); }
-      catch(e){ console.warn('Invalid data-avatars JSON'); }
+  let avatarMap = {};
+  try { avatarMap = JSON.parse(script.dataset.avatars || '{}'); }
+  catch(e){ console.warn('Invalid data-avatars JSON'); }
 
-      const raw = $$('#script > p');
-      script.innerHTML = '';
+  // 👇 iterate over ALL direct children (<p>, <blockquote>, <figure>, etc.)
+  const raw = Array.from(script.children);
+  script.innerHTML = '';
 
-      let sceneCount = 0;
-      let lastAvatar = null;
-      let lastName = null;
+  let sceneCount = 0;
+  let lastAvatar = null;
+  let lastName = null;
 
-      raw.forEach(p => {
-        const text = p.innerHTML.trim();
+  raw.forEach(el => {
+    // --- SCENE DIVIDER (:: ... ::) ---
+    if(/^::\s*.*\s*::$/.test(el.textContent.trim())){
+      const label = el.textContent.replace(/^::\s*|\s*::$/g,'').trim();
+      const scene = document.createElement('div');
+      scene.className = 'scene';
+      scene.id = 'scene-' + (++sceneCount);
+      const div = document.createElement('div');
+      div.className = 'divider';
+      div.innerHTML = `<div class="rule"></div><div class="chip">${label}</div><div class="rule"></div>`;
+      scene.appendChild(div);
+      script.appendChild(scene);
+      lastAvatar = null;
+      lastName = null;
+      return;
+    }
 
-        if(/^::\s*.*\s*::$/.test(p.textContent.trim())){
-          const label = p.textContent.replace(/^::\s*|\s*::$/g,'').trim();
-          const scene = document.createElement('div');
-          scene.className = 'scene';
-          scene.id = 'scene-' + (++sceneCount);
-          const div = document.createElement('div');
-          div.className = 'divider';
-          div.innerHTML = `<div class="rule"></div><div class="chip">${label}</div><div class="rule"></div>`;
-          scene.appendChild(div);
-          script.appendChild(scene);
-          lastAvatar = null;
-          lastName = null;
-          return;
-        }
+    // --- BLOCKQUOTE (for figure panels or styled breaks) ---
+    if (el.tagName.toLowerCase() === 'blockquote') {
+      let currentScene = script.lastElementChild;
+      if (!currentScene || !currentScene.classList.contains('scene')) {
+        currentScene = document.createElement('div');
+        currentScene.className = 'scene';
+        currentScene.id = 'scene-' + (++sceneCount);
+        script.appendChild(currentScene);
+      }
+      currentScene.appendChild(el); // just drop it in, CSS will style
+      return;
+    }
 
-        if(p.querySelector('figure')){
-          const scene = script.lastElementChild || document.createElement('div');
-          if(!scene.classList.contains('scene')){
-            scene.className = 'scene';
-            scene.id = 'scene-' + (++sceneCount);
-            script.appendChild(scene);
-          }
-          scene.appendChild(p.querySelector('figure'));
-          return;
-        }
+    // --- FIGURE (in case figure is a direct child, not wrapped in blockquote) ---
+    if (el.tagName.toLowerCase() === 'figure') {
+      let currentScene = script.lastElementChild;
+      if (!currentScene || !currentScene.classList.contains('scene')) {
+        currentScene = document.createElement('div');
+        currentScene.className = 'scene';
+        currentScene.id = 'scene-' + (++sceneCount);
+        script.appendChild(currentScene);
+      }
+      const wrapper = document.createElement('blockquote');
+      wrapper.appendChild(el);
+      currentScene.appendChild(wrapper);
+      return;
+    }
 
-        const strong = p.querySelector('strong');
-        if(strong && /:\s*$/.test(strong.textContent)){
-          const name = strong.textContent.replace(/:\s*$/,'').trim();
-          const contentHTML = p.innerHTML.replace(p.querySelector('strong').outerHTML,'').trim();
+    // --- DIALOGUE (strong NAME:) ---
+    if(el.querySelector('strong') && /:\s*$/.test(el.querySelector('strong').textContent)){
+      const name = el.querySelector('strong').textContent.replace(/:\s*$/,'').trim();
+      const contentHTML = el.innerHTML.replace(el.querySelector('strong').outerHTML,'').trim();
 
-          let currentScene = script.lastElementChild;
-          if(!currentScene || !currentScene.classList.contains('scene')){
-            currentScene = document.createElement('div');
-            currentScene.className = 'scene';
-            currentScene.id = 'scene-' + (++sceneCount);
-            script.appendChild(currentScene);
-          }
+      let currentScene = script.lastElementChild;
+      if(!currentScene || !currentScene.classList.contains('scene')){
+        currentScene = document.createElement('div');
+        currentScene.className = 'scene';
+        currentScene.id = 'scene-' + (++sceneCount);
+        script.appendChild(currentScene);
+      }
 
-          const line = document.createElement('div');
-          line.className = 'line';
+      const line = document.createElement('div');
+      line.className = 'line';
 
-          const avatar = document.createElement('div');
-          avatar.className = 'avatar';
-          const url = avatarMap[name] || '';
-          if(url){ avatar.style.backgroundImage = `url(${url})`; }
-          else { avatar.classList.add('initials'); avatar.textContent = makeInitials(name); }
+      const avatar = document.createElement('div');
+      avatar.className = 'avatar';
+      const url = avatarMap[name] || '';
+      if(url){ avatar.style.backgroundImage = `url(${url})`; }
+      else { avatar.classList.add('initials'); avatar.textContent = makeInitials(name); }
 
-          const bubbleWrap = document.createElement('div');
-          bubbleWrap.className = 'bubble-wrap';
-          const nameEl = document.createElement('div');
-          nameEl.className = 'bubble-name';
-          nameEl.textContent = name;
-          const bubble = document.createElement('div');
-          bubble.className = 'bubble';
-          bubble.innerHTML = contentHTML;
+      const bubbleWrap = document.createElement('div');
+      bubbleWrap.className = 'bubble-wrap';
+      const nameEl = document.createElement('div');
+      nameEl.className = 'bubble-name';
+      nameEl.textContent = name;
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.innerHTML = contentHTML;
 
-          bubbleWrap.appendChild(nameEl);
-          bubbleWrap.appendChild(bubble);
-          line.appendChild(avatar);
-          line.appendChild(bubbleWrap);
-          currentScene.appendChild(line);
+      bubbleWrap.appendChild(nameEl);
+      bubbleWrap.appendChild(bubble);
+      line.appendChild(avatar);
+      line.appendChild(bubbleWrap);
+      currentScene.appendChild(line);
 
-          lastAvatar = avatar;
-          lastName = name;
-          return;
-        }
+      lastAvatar = avatar;
+      lastName = name;
+      return;
+    }
 
-        let currentScene = script.lastElementChild;
-        if(!currentScene || !currentScene.classList.contains('scene')){
-          currentScene = document.createElement('div');
-          currentScene.className = 'scene';
-          currentScene.id = 'scene-' + (++sceneCount);
-          script.appendChild(currentScene);
-        }
-        if(lastAvatar && lastName){
-          const line = document.createElement('div');
-          line.className = 'line no-avatar';
-          const spacer = document.createElement('div');
-          spacer.style.width = '48px';
-          const bubbleWrap = document.createElement('div');
-          bubbleWrap.className = 'bubble-wrap';
-          const bubble = document.createElement('div');
-          bubble.className = 'bubble';
-          bubble.innerHTML = p.innerHTML;
-          bubbleWrap.appendChild(bubble);
-          line.appendChild(spacer);
-          line.appendChild(bubbleWrap);
-          currentScene.appendChild(line);
-        }
-      });
-    })();
+    // --- NARRATION (plain <p>) ---
+    if(el.tagName.toLowerCase() === 'p'){
+      let currentScene = script.lastElementChild;
+      if(!currentScene || !currentScene.classList.contains('scene')){
+        currentScene = document.createElement('div');
+        currentScene.className = 'scene';
+        currentScene.id = 'scene-' + (++sceneCount);
+        script.appendChild(currentScene);
+      }
+      if(lastAvatar && lastName){
+        const line = document.createElement('div');
+        line.className = 'line no-avatar';
+        const spacer = document.createElement('div');
+        spacer.style.width = '48px';
+        const bubbleWrap = document.createElement('div');
+        bubbleWrap.className = 'bubble-wrap';
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.innerHTML = el.innerHTML;
+        bubbleWrap.appendChild(bubble);
+        line.appendChild(spacer);
+        line.appendChild(bubbleWrap);
+        currentScene.appendChild(line);
+      }
+      return;
+    }
+  });
+})();
 
+// NEW SECTION
     function currentSceneIndex(){
       const scenes = $$('#script .scene');
       const pos = window.scrollY + window.innerHeight * 0.35;
